@@ -462,16 +462,15 @@ def home():
 <section class="section film-sec"><div class="wrap">
   <div class="s-head"><span class="eyebrow">See it in action</span><h2>One tap, and it starts listening</h2><p>Thirty seconds in a real boardroom: open the folio, tap the built-in listening device, and get on with the meeting.</p></div>
   <div class="film" data-film>
-    <video muted loop playsinline preload="none" poster="assets/img/film-poster-1600.webp?v=2" aria-label="Video: the tan HiNoterBook folio on a boardroom table. A finger taps the built-in listening device, its screen shows The HiNoterBook and a sound wave, with the caption Your notebook starts listening, then someone writes notes on the notepad.">
-      <source src="assets/video/folio-film-960.mp4?v=2" type="video/mp4" media="(max-width: 760px)">
-      <source src="assets/video/folio-film-1600.mp4?v=2" type="video/mp4">
+    <video loop playsinline webkit-playsinline preload="none" poster="assets/img/film-poster-1600.webp?v=2" aria-label="Video: the tan HiNoterBook folio on a boardroom table. A finger taps the built-in listening device, its screen shows The HiNoterBook and a sound wave, with the caption Your notebook starts listening, then someone writes notes on the notepad.">
+      <source src="assets/video/folio-film-1080.mp4?v=3" type="video/mp4">
     </video>
     <div class="film-ctrl">
       <button class="film-btn" type="button" data-film-play aria-label="Pause video" aria-pressed="false">
         <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
         <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6l-8.6-5.8C9.9 4.9 9 5.4 9 6.2z"/></svg>
       </button>
-      <button class="film-btn" type="button" data-film-sound aria-label="Turn sound on" aria-pressed="false">
+      <button class="film-btn" type="button" data-film-sound aria-label="Turn sound off" aria-pressed="true">
         <svg class="i-off" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
         <svg class="i-on" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
       </button>

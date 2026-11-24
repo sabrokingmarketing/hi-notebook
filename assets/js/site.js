@@ -192,42 +192,50 @@
     go(0);
   });
 
-  /* Product film: never plays by itself. It shows its still picture and a play button;
-     it plays only when the visitor taps, and pauses if they scroll away. */
+  /* Product film: never plays by itself. It loads quietly as the visitor gets close, then
+     plays with sound the moment they tap play. It pauses if they scroll away. */
   document.querySelectorAll("[data-film]").forEach(function (box) {
     var v = box.querySelector("video");
     var playBtn = box.querySelector("[data-film-play]");
     var soundBtn = box.querySelector("[data-film-sound]");
     var startBtn = box.querySelector("[data-film-start]");
-    var userPaused = true, inView = false;
-    function sync() {
+    v.muted = false;
+    function syncPlay() {
       var paused = v.paused;
       playBtn.setAttribute("aria-pressed", String(paused));
       playBtn.setAttribute("aria-label", paused ? "Play video" : "Pause video");
+      box.classList.toggle("idle", paused && v.currentTime === 0);
     }
-    function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () { box.classList.add("idle"); }); }
-    function update() {
-      if (inView && !userPaused && !document.hidden) { if (v.preload === "none") v.preload = "auto"; tryPlay(); }
-      else if (!v.paused) v.pause();
-    }
-    box.classList.add("idle");
-    v.addEventListener("play", function () { box.classList.remove("idle"); sync(); });
-    v.addEventListener("pause", sync);
-    playBtn.addEventListener("click", function () { userPaused = !v.paused; if (userPaused) v.pause(); else tryPlay(); });
-    startBtn.addEventListener("click", function () { userPaused = false; v.preload = "auto"; tryPlay(); });
-    soundBtn.addEventListener("click", function () {
-      v.muted = !v.muted;
+    function syncSound() {
       soundBtn.setAttribute("aria-pressed", String(!v.muted));
       soundBtn.setAttribute("aria-label", v.muted ? "Turn sound on" : "Turn sound off");
-      if (!v.muted && v.paused) { userPaused = false; tryPlay(); }
-    });
-    if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { inView = en[0].isIntersecting; update(); }, { threshold: .35 }).observe(box);
-    else { inView = true; update(); }
-    document.addEventListener("visibilitychange", update);
-    sync();
+    }
+    function play() {
+      if (v.preload !== "auto") v.preload = "auto";
+      v.muted = false; syncSound();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {
+        // Very rare: a browser refuses sound. Play silently instead, and the sound button turns it on.
+        v.muted = true; syncSound(); v.play().catch(function () {});
+      });
+    }
+    box.classList.add("idle");
+    v.addEventListener("play", syncPlay);
+    v.addEventListener("pause", syncPlay);
+    startBtn.addEventListener("click", play);
+    v.addEventListener("click", function () { if (v.paused) play(); else v.pause(); });
+    playBtn.addEventListener("click", function () { if (v.paused) play(); else v.pause(); });
+    soundBtn.addEventListener("click", function () { v.muted = !v.muted; syncSound(); });
+    if ("IntersectionObserver" in window) {
+      // Download in the background about one screen before the video arrives, so play starts instantly
+      new IntersectionObserver(function (en) { if (en[0].isIntersecting && v.preload !== "auto") { v.preload = "auto"; v.load(); } }, { rootMargin: "100% 0px" }).observe(box);
+      new IntersectionObserver(function (en) { if (!en[0].isIntersecting && !v.paused) v.pause(); }, { threshold: .1 }).observe(box);
+    }
+    document.addEventListener("visibilitychange", function () { if (document.hidden && !v.paused) v.pause(); });
+    syncPlay(); syncSound();
   });
 
-    /* Colour swatches swap the product photo */
+  /* Colour swatches swap the product photo */
   document.querySelectorAll("[data-swatches]").forEach(function (group) {
     var img = document.getElementById(group.getAttribute("data-swatches"));
     var name = document.querySelector("[data-colour-name]");

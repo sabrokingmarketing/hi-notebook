@@ -793,3 +793,4 @@ h1,h2,h3{text-transform:capitalize}
 @keyframes spin{to{transform:rotate(360deg)}}
 .form-error{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fdecea;color:#8a1c12;font-size:15px}
 .form-error.show{display:block}
+.film video{cursor:pointer}
