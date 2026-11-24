@@ -71,7 +71,7 @@ def slideshow(slides):
             f'<div class="slide-ctrl"><div class="slide-dots" role="group" aria-label="Photos">{dots}</div>'
             '<button class="slide-pause" type="button" aria-pressed="false" aria-label="Pause photos" data-slide-pause>'
             '<svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'
-            '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg>'
+            '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6l-8.6-5.8C9.9 4.9 9 5.4 9 6.2z"/></svg>'
             '</button></div></div>')
 
 
@@ -460,23 +460,23 @@ def home():
 </section>
 
 <section class="section film-sec"><div class="wrap">
-  <div class="s-head"><span class="eyebrow">See it in action</span><h2>Open it, and it starts listening</h2><p>Thirty seconds on a real boardroom table: lift the flap, and the built-in listening device is ready for the meeting.</p></div>
+  <div class="s-head"><span class="eyebrow">See it in action</span><h2>One tap, and it starts listening</h2><p>Thirty seconds in a real boardroom: open the folio, tap the built-in listening device, and get on with the meeting.</p></div>
   <div class="film" data-film>
-    <video muted loop playsinline preload="none" poster="assets/img/film-poster-1600.webp" aria-label="Video: a hand opens the tan HiNoterBook folio on a boardroom table, showing the built-in listening device, notebook and pen. Caption: Your notebook starts listening.">
-      <source src="assets/video/folio-film-960.mp4" type="video/mp4" media="(max-width: 760px)">
-      <source src="assets/video/folio-film-1600.mp4" type="video/mp4">
+    <video muted loop playsinline preload="none" poster="assets/img/film-poster-1600.webp?v=2" aria-label="Video: the tan HiNoterBook folio on a boardroom table. A finger taps the built-in listening device, its screen shows The HiNoterBook and a sound wave, with the caption Your notebook starts listening, then someone writes notes on the notepad.">
+      <source src="assets/video/folio-film-960.mp4?v=2" type="video/mp4" media="(max-width: 760px)">
+      <source src="assets/video/folio-film-1600.mp4?v=2" type="video/mp4">
     </video>
     <div class="film-ctrl">
       <button class="film-btn" type="button" data-film-play aria-label="Pause video" aria-pressed="false">
         <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg>
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6l-8.6-5.8C9.9 4.9 9 5.4 9 6.2z"/></svg>
       </button>
       <button class="film-btn" type="button" data-film-sound aria-label="Turn sound on" aria-pressed="false">
         <svg class="i-off" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
         <svg class="i-on" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
       </button>
     </div>
-    <button class="film-big" type="button" data-film-start aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg></button>
+    <button class="film-big" type="button" data-film-start aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6l-8.6-5.8C9.9 4.9 9 5.4 9 6.2z"/></svg></button>
   </div>
 </div></section>
 
@@ -509,7 +509,7 @@ def home():
   <div class="s-head"><h2>Before, during and after the meeting</h2><p>The assistant takes the notes, then sends them to your inbox when the call ends. You just review them.</p></div>
   <div class="steps-stage" data-steps>{cards}</div>
   <div class="step-copy">
-    <div class="step-ctrl"><div class="step-tabs" role="tablist" aria-label="Meeting stages" data-steps-tabs>{tabs}</div><button class="step-pause" type="button" aria-pressed="false" aria-label="Pause automatic steps" data-steps-pause><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg></button></div>
+    <div class="step-ctrl"><div class="step-tabs" role="tablist" aria-label="Meeting stages" data-steps-tabs>{tabs}</div><button class="step-pause" type="button" aria-pressed="false" aria-label="Pause automatic steps" data-steps-pause><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.2v11.6c0 .8.9 1.3 1.6.8l8.6-5.8c.6-.4.6-1.2 0-1.6l-8.6-5.8C9.9 4.9 9 5.4 9 6.2z"/></svg></button></div>
     <div style="margin-top:22px">{panels}</div>
   </div>
 </div></section>
