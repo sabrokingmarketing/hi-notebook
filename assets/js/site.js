@@ -192,14 +192,14 @@
     go(0);
   });
 
-  /* Product film: plays muted when in view, pauses when scrolled away.
-     Visitors who prefer less motion get a play button instead of autoplay. */
+  /* Product film: never plays by itself. It shows its still picture and a play button;
+     it plays only when the visitor taps, and pauses if they scroll away. */
   document.querySelectorAll("[data-film]").forEach(function (box) {
     var v = box.querySelector("video");
     var playBtn = box.querySelector("[data-film-play]");
     var soundBtn = box.querySelector("[data-film-sound]");
     var startBtn = box.querySelector("[data-film-start]");
-    var userPaused = reduce, inView = false;
+    var userPaused = true, inView = false;
     function sync() {
       var paused = v.paused;
       playBtn.setAttribute("aria-pressed", String(paused));
@@ -210,7 +210,7 @@
       if (inView && !userPaused && !document.hidden) { if (v.preload === "none") v.preload = "auto"; tryPlay(); }
       else if (!v.paused) v.pause();
     }
-    if (reduce) box.classList.add("idle");
+    box.classList.add("idle");
     v.addEventListener("play", function () { box.classList.remove("idle"); sync(); });
     v.addEventListener("pause", sync);
     playBtn.addEventListener("click", function () { userPaused = !v.paused; if (userPaused) v.pause(); else tryPlay(); });
