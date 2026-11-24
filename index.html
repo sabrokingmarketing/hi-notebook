@@ -54,32 +54,34 @@ document.addEventListener("DOMContentLoaded",top);window.addEventListener("load"
   <p class="lede">A stitched folio with a built-in AI listening device. It takes every note and sends them straight to your inbox after the meeting, so you can stay in the conversation.</p>
   <div class="actions"><a class="btn btn-primary" href="pre-order.html">Pre-order for R7 499 <span class="arr" aria-hidden="true">→</span></a><a class="btn btn-white" href="how-it-works.html">See how it works</a></div>
 </div>
-<div class="stage"><div class="laptop" role="img" aria-label="Example: The HiNoterBook app showing a live meeting with its transcript and notes being written">
+<div class="stage"><div class="laptop" role="img" aria-label="Example: an email inbox showing the email The HiNoterBook sends after a meeting, with the summary, decisions and action items">
   <div class="lid"><div class="notch"></div><div class="screen"><div class="screen-fit">
     <div class="screen-wall"></div>
-    <div class="app" aria-hidden="true">
+    <div class="app mail" aria-hidden="true">
       <div class="app-top"><div class="dots"><i></i><i></i><i></i></div>
-        <b style="font-weight:600">The HiNoterBook</b>
-        <div class="app-tabs"><span class="on">Live meeting</span><span>Notes</span><span>Follow-ups</span></div>
-        <span class="rec"><i></i>Capturing · 18:42</span></div>
-      <div class="app-body">
-        <div class="app-main">
-          <div class="meet">
-            <div class="tile big speaking"><div class="av">TN</div><span class="nm">Thandi N.</span><div class="wave"><i></i><i></i><i></i><i></i></div></div>
-            <div class="tile"><div class="av" style="background:#6aa0a0">PV</div><span class="nm">Pieter V.</span></div>
-            <div class="tile"><div class="av" style="background:#9b86c9;background:#8aa16a">AK</div><span class="nm">Aisha K.</span></div>
-            <div class="caption-bar">“So we agree: launch moves to 3 March, and Pieter owns the pricing update.”</div>
+        <b style="font-weight:600">Inbox</b>
+        <div class="msearch">Search mail</div>
+        <span class="newmail"><i></i>New notes just arrived</span></div>
+      <div class="mail-body">
+        <aside class="mlist"><div class="mlist-h">Inbox <span>1 new</span></div><div class="mrow on unread"><span class="mav"></span><div class="mtx"><div class="mtop"><b>The HiNoterBook</b><time>10:42</time></div><div class="msub">Your notes: Launch check-in</div><div class="mprev">Summary, 4 action items and a draft follow-up</div></div></div><div class="mrow"><span class="mav"></span><div class="mtx"><div class="mtop"><b>The HiNoterBook</b><time>Yesterday</time></div><div class="msub">Your notes: Supplier call</div><div class="mprev">Supplier confirmed the new delivery window</div></div></div><div class="mrow"><span class="mav"></span><div class="mtx"><div class="mtop"><b>The HiNoterBook</b><time>Mon</time></div><div class="msub">Your notes: Weekly team sync</div><div class="mprev">3 decisions, 6 action items</div></div></div><div class="mrow"><span class="mav"></span><div class="mtx"><div class="mtop"><b>The HiNoterBook</b><time>Fri</time></div><div class="msub">Your notes: Board prep</div><div class="mprev">Open questions for Thursday</div></div></div></aside>
+        <article class="mread">
+          <div class="mhead">
+            <span class="mlogo"><img src="assets/img/logo.png" alt=""></span>
+            <div><h5>Your notes: Launch check-in</h5><p><b>The HiNoterBook</b> to me · Today 10:42 · sent when your meeting ended</p></div>
           </div>
-          <div class="meet-ctrls"><b>Launch check-in</b> · Google Meet<span class="sp"></span><span class="c">●</span><span class="c">▢</span><span class="c end"></span></div>
-        </div>
-        <div class="app-side">
-          <h5>Live transcript</h5>
-          <div class="tline"><span class="a" style="background:#d28f5a">TN</span><div><b>Thandi</b><p>Supplier needs two more weeks, so the February date won't hold.</p></div><time>18:10</time></div>
-          <div class="tline"><span class="a" style="background:#6aa0a0">PV</span><div><b>Pieter</b><p>Then 3 March works. I'll redo the pricing sheet.</p></div><time>18:31</time></div>
-          <h5 style="margin-top:4px">Notes, as they happen</h5>
-          <div class="note-live"><div class="chip-row"><span class="chip">Decision</span><span class="chip">Action</span><span class="chip">Risk</span></div>
-            <ul><li>Supplier delay of two weeks</li><li data-typer='[&quot;Decision: launch date moves to 3 March.&quot;, &quot;Action: Pieter updates the pricing sheet by Friday.&quot;, &quot;Open question: who signs off the supplier contract?&quot;]' class="typing">Decision: launch date moves to 3 March.</li></ul></div>
-        </div>
+          <div class="mcard">
+            <div class="mmeta"><span>Launch check-in</span><span>32 min</span><span>Thandi N., Pieter V., Aisha K.</span></div>
+            <h6>Summary</h6>
+            <p>The supplier is two weeks late, so the launch moves from February to 3 March.</p>
+            <div class="mcols">
+              <div><h6>Decisions</h6><ul><li>New launch date: 3 March</li><li>Current price holds for the first 100 orders</li></ul></div>
+              <div><h6>Action items</h6><ul class="mtodo"><li><i></i>Update the pricing sheet<em>Pieter · Fri</em></li><li><i></i>Tell the launch partners<em>Aisha · Wed</em></li><li><i></i>Confirm who signs the contract<em>Thandi · Thu</em></li></ul></div>
+            </div>
+            <div class="mbtns"><span class="mb pri">Review notes</span><span class="mb">Send follow-up email</span><span class="mb">Full transcript</span></div>
+          </div>
+          <div class="mdraft"><h6>Draft follow-up email · ready to review</h6>
+            <p>Hi both, thanks for today. Quick recap: the supplier needs two more weeks, so we're launching on 3 March. Pieter, please update the pricing sheet by Friday. Aisha, could you let the launch partners know by Wednesday?</p></div>
+        </article>
       </div>
     </div>
   </div></div></div>
@@ -212,9 +214,9 @@ document.addEventListener("DOMContentLoaded",top);window.addEventListener("load"
     <span class="eyebrow">Inside the folio</span>
     <h2>Everything you carry into a meeting, in one place</h2>
     <p class="lede">Open the flap and the listening device, notebook and pen are side by side, ready when the meeting starts.</p>
-    <ul class="dot-list"><li><b>AI listening device</b><span>Built into the folio. It listens during the meeting, then your notes go to your inbox.</span></li><li><b>Power bank</b><span>Included, to keep the listening device charged.</span></li><li><b>Notebook</b><span>Paper for the thoughts you want to keep by hand.</span></li><li><b>Pen loop</b><span>Your pen stays with your notes.</span></li><li><b>Snap closure</b><span>The flap closes with a press stud.</span></li></ul>
+    <ul class="dot-list"><li><b>AI listening device</b><span>Built into the folio. It listens during the meeting, then your notes go to your inbox.</span></li><li><b>Power bank</b><span>Included, to keep the listening device charged.</span></li><li><b>Notebook</b><span>A lined notepad for the thoughts you want to keep by hand.</span></li><li><b>Pen loop</b><span>Your pen stays with your notes.</span></li><li><b>Snap closure</b><span>The flap closes with a press stud.</span></li></ul>
   </div>
-  <div class="inside-img slideshow" data-slideshow><img class="slide on" src="assets/img/folio-travertine-1600.webp" srcset="assets/img/folio-travertine-800.webp 800w, assets/img/folio-travertine-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio lying open on a travertine stone slab, with its built-in AI listening device, a cream notebook and a gold pen beside it" loading="lazy" decoding="async"><img class="slide" src="assets/img/folio-table-1600.webp" srcset="assets/img/folio-table-800.webp 800w, assets/img/folio-table-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio lying open on a long boardroom table, with its built-in AI listening device, a cream notebook and a pen beside it, and a city view through the windows" loading="lazy" decoding="async"><img class="slide" src="assets/img/folio-open-1600.webp" srcset="assets/img/folio-open-800.webp 800w, assets/img/folio-open-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio lying open on a wooden desk, showing its built-in AI listening device, a pen loop and a cream notebook under the snap flap" loading="lazy" decoding="async"><div class="slide-ctrl"><div class="slide-dots" role="group" aria-label="Photos"><button class="slide-dot" type="button" aria-label="Show photo 1 of 3" aria-current="true"><i></i></button><button class="slide-dot" type="button" aria-label="Show photo 2 of 3"><i></i></button><button class="slide-dot" type="button" aria-label="Show photo 3 of 3"><i></i></button></div><button class="slide-pause" type="button" aria-pressed="false" aria-label="Pause photos" data-slide-pause><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg></button></div></div>
+  <div class="inside-img slideshow" data-slideshow><img class="slide on" src="assets/img/folio-wood-1600.webp" srcset="assets/img/folio-wood-800.webp 800w, assets/img/folio-wood-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio lying open on a dark wooden boardroom table, showing its built-in AI listening device, a pen loop and a lined notepad, with a pen and coffee mug beside it and a city view behind" loading="lazy" decoding="async"><img class="slide" src="assets/img/folio-cafe-1600.webp" srcset="assets/img/folio-cafe-800.webp 800w, assets/img/folio-cafe-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio standing open on a cafe table, showing its built-in AI listening device, a pen in its loop and a notepad with handwritten meeting notes, next to a cappuccino" loading="lazy" decoding="async"><img class="slide" src="assets/img/folio-studio-1600.webp" srcset="assets/img/folio-studio-800.webp 800w, assets/img/folio-studio-1600.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="2142" alt="The tan folio lying open on a plain grey background, showing its built-in AI listening device, a pen loop, a lined notepad and the snap-button flap" loading="lazy" decoding="async"><div class="slide-ctrl"><div class="slide-dots" role="group" aria-label="Photos"><button class="slide-dot" type="button" aria-label="Show photo 1 of 3" aria-current="true"><i></i></button><button class="slide-dot" type="button" aria-label="Show photo 2 of 3"><i></i></button><button class="slide-dot" type="button" aria-label="Show photo 3 of 3"><i></i></button></div><button class="slide-pause" type="button" aria-pressed="false" aria-label="Pause photos" data-slide-pause><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10-6.5a1 1 0 0 0 0-1.7l-10-6.6A1 1 0 0 0 8 5.5z"/></svg></button></div></div>
 </div></div></section>
 
 <section class="section ground-soft"><div class="wrap">

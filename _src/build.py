@@ -44,7 +44,7 @@ def inside(slides=None, stem="folio-open", alt="The tan folio lying open on a wo
     items = [
         ("AI listening device", "Built into the folio. It listens during the meeting, then your notes go to your inbox."),
         ("Power bank", "Included, to keep the listening device charged."),
-        ("Notebook", "Paper for the thoughts you want to keep by hand."),
+        ("Notebook", "A lined notepad for the thoughts you want to keep by hand."),
         ("Pen loop", "Your pen stays with your notes."),
         ("Snap closure", "The flap closes with a press stud."),
     ]
@@ -268,37 +268,46 @@ def faq_block(items, idp, heading="Frequently asked questions", aside=True):
 # ---------- Shared components ----------
 
 def app_frame():
-    typer = json.dumps([
-        "Decision: launch date moves to 3 March.",
-        "Action: Pieter updates the pricing sheet by Friday.",
-        "Open question: who signs off the supplier contract?",
-    ])
-    return f"""<div class="laptop" role="img" aria-label="Example: {e(S.BRAND)} app showing a live meeting with its transcript and notes being written">
+    """Laptop screen: an email inbox with the notes email The HiNoterBook sends after a meeting (example)."""
+    mails = [
+        ("Your notes: Launch check-in", "Summary, 4 action items and a draft follow-up", "10:42", True, True),
+        ("Your notes: Supplier call", "Supplier confirmed the new delivery window", "Yesterday", False, False),
+        ("Your notes: Weekly team sync", "3 decisions, 6 action items", "Mon", False, False),
+        ("Your notes: Board prep", "Open questions for Thursday", "Fri", False, False),
+    ]
+    rows = ""
+    for subj, prev, t, unread, on in mails:
+        rows += (f'<div class="mrow{" on" if on else ""}{" unread" if unread else ""}"><span class="mav"></span>'
+                 f'<div class="mtx"><div class="mtop"><b>{e(S.BRAND)}</b><time>{t}</time></div>'
+                 f'<div class="msub">{e(subj)}</div><div class="mprev">{e(prev)}</div></div></div>')
+    return f"""<div class="laptop" role="img" aria-label="Example: an email inbox showing the email {e(S.BRAND)} sends after a meeting, with the summary, decisions and action items">
   <div class="lid"><div class="notch"></div><div class="screen"><div class="screen-fit">
     <div class="screen-wall"></div>
-    <div class="app" aria-hidden="true">
+    <div class="app mail" aria-hidden="true">
       <div class="app-top"><div class="dots"><i></i><i></i><i></i></div>
-        <b style="font-weight:600">{e(S.BRAND)}</b>
-        <div class="app-tabs"><span class="on">Live meeting</span><span>Notes</span><span>Follow-ups</span></div>
-        <span class="rec"><i></i>Capturing · 18:42</span></div>
-      <div class="app-body">
-        <div class="app-main">
-          <div class="meet">
-            <div class="tile big speaking"><div class="av">TN</div><span class="nm">Thandi N.</span><div class="wave"><i></i><i></i><i></i><i></i></div></div>
-            <div class="tile"><div class="av" style="background:#6aa0a0">PV</div><span class="nm">Pieter V.</span></div>
-            <div class="tile"><div class="av" style="background:#9b86c9;background:#8aa16a">AK</div><span class="nm">Aisha K.</span></div>
-            <div class="caption-bar">“So we agree: launch moves to 3 March, and Pieter owns the pricing update.”</div>
+        <b style="font-weight:600">Inbox</b>
+        <div class="msearch">Search mail</div>
+        <span class="newmail"><i></i>New notes just arrived</span></div>
+      <div class="mail-body">
+        <aside class="mlist"><div class="mlist-h">Inbox <span>1 new</span></div>{rows}</aside>
+        <article class="mread">
+          <div class="mhead">
+            <span class="mlogo"><img src="assets/img/logo.png" alt=""></span>
+            <div><h5>Your notes: Launch check-in</h5><p><b>{e(S.BRAND)}</b> to me · Today 10:42 · sent when your meeting ended</p></div>
           </div>
-          <div class="meet-ctrls"><b>Launch check-in</b> · Google Meet<span class="sp"></span><span class="c">●</span><span class="c">▢</span><span class="c end"></span></div>
-        </div>
-        <div class="app-side">
-          <h5>Live transcript</h5>
-          <div class="tline"><span class="a" style="background:#d28f5a">TN</span><div><b>Thandi</b><p>Supplier needs two more weeks, so the February date won't hold.</p></div><time>18:10</time></div>
-          <div class="tline"><span class="a" style="background:#6aa0a0">PV</span><div><b>Pieter</b><p>Then 3 March works. I'll redo the pricing sheet.</p></div><time>18:31</time></div>
-          <h5 style="margin-top:4px">Notes, as they happen</h5>
-          <div class="note-live"><div class="chip-row"><span class="chip">Decision</span><span class="chip">Action</span><span class="chip">Risk</span></div>
-            <ul><li>Supplier delay of two weeks</li><li data-typer='{e(typer)}' class="typing">Decision: launch date moves to 3 March.</li></ul></div>
-        </div>
+          <div class="mcard">
+            <div class="mmeta"><span>Launch check-in</span><span>32 min</span><span>Thandi N., Pieter V., Aisha K.</span></div>
+            <h6>Summary</h6>
+            <p>The supplier is two weeks late, so the launch moves from February to 3 March.</p>
+            <div class="mcols">
+              <div><h6>Decisions</h6><ul><li>New launch date: 3 March</li><li>Current price holds for the first 100 orders</li></ul></div>
+              <div><h6>Action items</h6><ul class="mtodo"><li><i></i>Update the pricing sheet<em>Pieter · Fri</em></li><li><i></i>Tell the launch partners<em>Aisha · Wed</em></li><li><i></i>Confirm who signs the contract<em>Thandi · Thu</em></li></ul></div>
+            </div>
+            <div class="mbtns"><span class="mb pri">Review notes</span><span class="mb">Send follow-up email</span><span class="mb">Full transcript</span></div>
+          </div>
+          <div class="mdraft"><h6>Draft follow-up email · ready to review</h6>
+            <p>Hi both, thanks for today. Quick recap: the supplier needs two more weeks, so we're launching on 3 March. Pieter, please update the pricing sheet by Friday. Aisha, could you let the launch partners know by Wednesday?</p></div>
+        </article>
       </div>
     </div>
   </div></div></div>
@@ -512,9 +521,9 @@ def home():
 <section class="section"><div class="wrap">{lifestyle()}</div></section>
 
 <section class="section ground-surface"><div class="wrap">{inside([
-    ("folio-travertine", "The tan folio lying open on a travertine stone slab, with its built-in AI listening device, a cream notebook and a gold pen beside it"),
-    ("folio-table", "The tan folio lying open on a long boardroom table, with its built-in AI listening device, a cream notebook and a pen beside it, and a city view through the windows"),
-    ("folio-open", "The tan folio lying open on a wooden desk, showing its built-in AI listening device, a pen loop and a cream notebook under the snap flap"),
+    ("folio-wood", "The tan folio lying open on a dark wooden boardroom table, showing its built-in AI listening device, a pen loop and a lined notepad, with a pen and coffee mug beside it and a city view behind"),
+    ("folio-cafe", "The tan folio standing open on a cafe table, showing its built-in AI listening device, a pen in its loop and a notepad with handwritten meeting notes, next to a cappuccino"),
+    ("folio-studio", "The tan folio lying open on a plain grey background, showing its built-in AI listening device, a pen loop, a lined notepad and the snap-button flap"),
 ])}</div></section>
 
 <section class="section ground-soft"><div class="wrap">
@@ -562,7 +571,7 @@ def product():
     body = f"""
 {page_hero("The notebook", "A stitched folio with an assistant inside the work", "Paper for the ideas you want to keep by hand. An AI assistant for everything that was said.", True, '<div class="hero-shot float">' + photo("folio-trio", "Three HiNoterBook folios side by side in tan, black and blush", 1400, 946, "(max-width: 960px) 92vw, 880px") + '</div>')}
 <section class="section ground-sand"><div class="wrap">{showcase("Choose the colour you'll carry every day", "prod-img")}</div></section>
-<section class="section"><div class="wrap">{inside(None, "folio-boardroom", "The tan folio lying open on a boardroom table, with its built-in AI listening device, a pen and a notebook, chairs and a city view behind", 1600, 2142)}</div></section>
+<section class="section"><div class="wrap">{inside(None, "folio-studio", "The tan folio lying open on a plain grey background, showing its built-in AI listening device, a pen loop, a lined notepad and the snap-button flap", 1600, 2142)}</div></section>
 <section class="section ground-surface"><div class="wrap">{lifestyle()}</div></section>
 <section class="section"><div class="wrap">
   <div class="s-head"><h2>Paper and software, each doing its part</h2><p>The folio is for you. The assistant is for the record.</p></div>
@@ -605,7 +614,7 @@ def how():
     body = f"""
 {page_hero("How it works", "Before, during and after every meeting", "Three simple stages. You stay in the conversation; your notes arrive in your inbox afterwards.")}
 <section class="section"><div class="wrap"><div class="timeline">{t}</div></div></section>
-<section class="section ground-surface"><div class="wrap">{lifestyle("folio-boardroom", "The tan folio lying open on a boardroom table, with its built-in AI listening device, a pen and a notebook, chairs and a city view behind", 1600, 2142, "Set up in seconds", "Open the folio and start the meeting", "The listening device is built in, your notebook lies flat and your pen is in its loop. Nothing to set up on the table.", "50% 68%")}</div></section>
+<section class="section ground-surface"><div class="wrap">{lifestyle("folio-wood", "The tan folio lying open on a dark wooden boardroom table, showing its built-in AI listening device, a pen loop and a lined notepad, with a pen and coffee mug beside it and a city view behind", 1600, 2142, "Set up in seconds", "Open the folio and start the meeting", "The listening device is built in, your notebook lies flat and your pen is in its loop. Nothing to set up on the table.", "50% 68%")}</div></section>
 <section class="section ground-surface"><div class="wrap">{notes_examples("hw")}</div></section>
 <section class="section"><div class="wrap">
   <div class="s-head"><h2>Made for people who live in meetings</h2><p>If your calendar is full of calls, this is for you.</p></div>
