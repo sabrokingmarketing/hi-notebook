@@ -39,7 +39,7 @@ EMAIL = "hello@hinoterbook.example"
 # TODO: city or area the team works from (district only)
 LOCATION = "South Africa"
 # TODO: live domain, used for sitemap.xml and share links
-DOMAIN = "https://hi-notebook.vercel.app"  # TODO: change to the real domain once it is connected in Vercel
+DOMAIN = "https://hinoterbook.co.za"
 # TODO: business hours
 HOURS = "Monday to Friday, during business hours"
 
@@ -121,7 +121,6 @@ TODO = [
     "WhatsApp number (international format, e.g. 27821234567)",
     "Phone number for tap-to-call",
     "Email address for pre-orders",
-    "Live website address (domain) for sitemap and share links",
     "What the R7 499 pre-order includes, and delivery timing",
     "Official colour names",
     "Folio specifications: size and materials",
@@ -130,3 +129,30 @@ TODO = [
     "Company name and details for the Privacy Policy and pre-order terms",
     "Lifestyle photos of the folio in use (desk, meeting room)",
 ]
+
+
+# ---------- Search (SEO): the title and description Google shows for each page ----------
+# Titles: about 50-60 characters. Descriptions: about 140-160 characters.
+SEO = {
+    "index.html": ("The HiNoterBook: In-person AI Note Taker for Meetings",
+                   "A leather folio with a built-in AI listening device that takes your meeting notes and emails them to you. Pre-order in South Africa for R7 499."),
+    "product.html": ("AI Notebook with Built-in Listening Device | The HiNoterBook",
+                     "Stitched leather folio with a built-in AI listening device, power bank, notepad and pen loop. Four colours. Free HiNoter Earpods worth R999."),
+    "how-it-works.html": ("How the AI Meeting Note Taker Works | The HiNoterBook",
+                          "Tap to start, stay in the conversation, and get your summary, action items and a draft follow-up email in your inbox after every meeting."),
+    "integrations.html": ("AI Note Taker Integrations | The HiNoterBook",
+                          "Planned connections for The HiNoterBook: ChatGPT, Claude, Gemini, Zoom, Google Meet and Microsoft Teams, with an honest status for each."),
+    "pricing.html": ("Price: R7 499 with Free HiNoter Earpods | The HiNoterBook",
+                     "The HiNoterBook costs R7 499 once-off (RRP), with free HiNoter Earpods worth R999. Scratch the card for 10% off. No payment online."),
+    "faq.html": ("AI Note Taker FAQ: Price, Privacy, Delivery | The HiNoterBook",
+                 "Answers about The HiNoterBook: how the AI note taker works, what is in the box, the R7 499 pre-order, recording consent and POPIA."),
+    "pre-order.html": ("Pre-order the AI Note Taker Notebook | The HiNoterBook",
+                       "Reserve The HiNoterBook for R7 499 with free HiNoter Earpods. Choose your colour; our team contacts you to confirm. Nothing is charged online."),
+    "contact.html": ("Contact Us | The HiNoterBook",
+                     "Questions about The HiNoterBook AI note taker or your pre-order? Contact our team by WhatsApp, phone or email."),
+    "privacy.html": ("Privacy Policy (POPIA) | The HiNoterBook",
+                     "How The HiNoterBook collects, uses and protects your personal information in line with South Africa's POPIA."),
+    "terms.html": ("Pre-order Terms | The HiNoterBook",
+                   "The HiNoterBook pre-order terms: R7 499 RRP once-off, the 10% scratch-card reward, the free HiNoter Earpods and how to cancel."),
+    "404.html": ("Page Not Found | The HiNoterBook", "This page could not be found. Visit The HiNoterBook homepage or pre-order the AI note taker."),
+}

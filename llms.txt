@@ -1,0 +1,38 @@
+# The HiNoterBook
+
+> Your In-person AI NoteTaker. A stitched leather folio with a built-in AI listening device. It listens during in-person meetings and emails you the summary, action items and a draft follow-up email afterwards. Sold in South Africa.
+
+## Key facts
+- Price: R7 499 once-off (recommended retail price). Maximum discount 10% via the website scratch card (R6 749).
+- Free gift: HiNoter Earpods worth R999 with every pre-order.
+- In the box: folio with built-in AI listening device, power bank, notepad and pen loop.
+- Colours: Tan, Onyx, Stone, Blush.
+- Status: pre-orders open. Nothing is charged online; the team contacts each customer to confirm colour, delivery and payment.
+- Integrations (ChatGPT, Claude, Gemini, Zoom, Google Meet, Microsoft Teams) are planned, not live yet.
+
+## Pages
+- [Home](https://hinoterbook.co.za/): overview, video and how the notes reach your inbox
+- [Product](https://hinoterbook.co.za/product.html): details, colours and what is inside
+- [How it works](https://hinoterbook.co.za/how-it-works.html): before, during and after the meeting
+- [Pricing](https://hinoterbook.co.za/pricing.html): R7 499 RRP and what is included
+- [Pre-order](https://hinoterbook.co.za/pre-order.html): reserve yours
+- [FAQ](https://hinoterbook.co.za/faq.html)
+- [Privacy Policy (POPIA)](https://hinoterbook.co.za/privacy.html)
+
+## FAQ
+- Where do my notes go after a meeting? Straight to your email inbox. When the meeting ends, the assistant sends you the summary, action items and a draft follow-up email to review before you share anything.
+- Is the AI assistant available today? Not yet. Pre-orders are open now. When our team contacts you about your pre-order, they will share the timing for the folio and for assistant access.
+- How does the R7 499 pre-order work? R7 499 is the recommended retail price (RRP), paid once-off, and it includes free HiNoter Earpods worth R999. Fill in the short pre-order form and send it. You don't pay anything on this website. Our team will contact you to confirm your colour, delivery and payment.
+- Which meeting apps will it work with? Zoom, Google Meet and Microsoft Teams are planned first. The integrations page shows each one's status, and nothing is marked live until it works.
+- Can I edit the notes before I share them? Yes, that is the plan. Summaries, action items and the follow-up email are drafts you check and change before anything goes out.
+- How do I use the 10% scratch-card reward? Scratch the card on the homepage. The reward is saved on your device and applied to your pre-order automatically, so you pay R6 749 instead of R7 499.
+- What comes in the box? The folio with its built-in AI listening device, a power bank to keep the device charged, and free HiNoter Earpods worth R999.
+- Is there a bigger discount? No. 10% off is the maximum discount, from the scratch card. Every pre-order also includes free HiNoter Earpods worth R999.
+- Do I need my phone for it to listen? No. The AI listening device is built into the folio, so you just open it and start the meeting.
+- Does everyone in the meeting need to agree to being recorded? Yes. Tell people at the start when a meeting is being captured. South African law (POPIA) expects people to know how their personal information is used, and it's simply good manners.
+- Will it connect to ChatGPT, Claude and Gemini? That is planned, where each company's tools allow it. You would send a meeting's notes to the AI tool you already use. These connections are not live yet.
+- What colours can I choose? Four: Tan, Onyx, Stone and Blush. You choose one on the pre-order form.
+- Do I pay online? No. This website doesn't take payments. After you send your pre-order, our team contacts you with the payment details and next steps.
+- Can I change my colour after I pre-order? Yes. Tell our team when they contact you, or send us a WhatsApp message.
+- Where do you deliver? Our team will confirm delivery options for your area when they contact you.
+- Who is it for? People whose days are full of meetings: managers, sales teams, consultants, founders and anyone who takes minutes.

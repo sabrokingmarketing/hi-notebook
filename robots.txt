@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://hi-notebook.vercel.app/sitemap.xml
+Disallow: /api/
+
+Sitemap: https://hinoterbook.co.za/sitemap.xml

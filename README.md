@@ -38,3 +38,10 @@ Layout, colours and behaviour live in `assets/css/site.css` and `assets/js/site.
 
 See the `TODO` list at the bottom of `_src/content.py`. Most important: the real **WhatsApp number, phone number and email**.
 Until those are filled in, pre-orders and questions cannot reach the team.
+
+## Search (SEO)
+
+- Live address: **https://hinoterbook.co.za** (set as `DOMAIN` in `_src/content.py`). Every page points Google to this address.
+- Each page's search title and description live in the `SEO` list in `_src/content.py`.
+- Built in: structured data for the business, product (price, pre-order), FAQ, video and breadcrumbs; `sitemap.xml` (with images), `robots.txt`, `site.webmanifest` and `llms.txt` (a plain summary for AI assistants).
+- After the domain is live: add it to Google Search Console and Bing Webmaster Tools, verify with a DNS record, and submit `https://hinoterbook.co.za/sitemap.xml`.

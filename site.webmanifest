@@ -1,0 +1,21 @@
+{
+  "name": "The HiNoterBook",
+  "short_name": "HiNoterBook",
+  "description": "Your In-person AI NoteTaker",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#1f5bd6",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

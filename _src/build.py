@@ -118,6 +118,56 @@ def promo():
 """
 
 
+# ---------- Structured data (schema.org JSON-LD) so Google understands the business, product, FAQ and video ----------
+def _abs(p):
+    return S.DOMAIN + "/" + p
+
+
+def org():
+    return {"@type": "Organization", "@id": S.DOMAIN + "/#organization", "name": S.BRAND, "url": S.DOMAIN + "/",
+            "logo": {"@type": "ImageObject", "url": _abs("assets/img/logo.png"), "width": 337, "height": 220},
+            "slogan": S.TAGLINE, "areaServed": {"@type": "Country", "name": "South Africa"}}
+
+
+def product_ld():
+    price = f"{S.PRICE_RAND}.00"
+    return {"@type": "Product", "@id": S.DOMAIN + "/#product", "name": S.BRAND,
+            "description": "A stitched leather folio with a built-in AI listening device that takes your meeting notes and sends the summary, action items and a draft follow-up email to your inbox after the meeting. Includes a power bank, notepad and pen loop, plus free HiNoter Earpods worth R999.",
+            "brand": {"@type": "Brand", "name": S.BRAND}, "category": "AI note taker",
+            "image": [_abs("assets/img/folio-trio-1600.webp"), _abs("assets/img/folio-wood-1600.webp"), _abs("assets/img/folio-studio-1600.webp"), _abs("assets/img/folio-tan-1200.webp")],
+            "color": ", ".join(c[1] for c in S.COLOURS), "material": "Leather",
+            "offers": {"@type": "Offer", "url": _abs("pre-order.html"), "price": price, "priceCurrency": "ZAR",
+                       "availability": "https://schema.org/PreOrder", "itemCondition": "https://schema.org/NewCondition",
+                       "seller": {"@id": S.DOMAIN + "/#organization"}, "areaServed": {"@type": "Country", "name": "South Africa"}}}
+
+
+def schema(path, full, desc, url):
+    if path == "404.html":
+        return []
+    names = dict(S.NAV + [("pre-order.html", "Pre-order"), ("contact.html", "Contact"), ("privacy.html", "Privacy Policy"), ("terms.html", "Pre-order terms")])
+    page_ld = {"@type": "WebPage", "@id": url + "#webpage", "url": url, "name": full, "description": desc, "inLanguage": "en-ZA",
+               "isPartOf": {"@id": S.DOMAIN + "/#website"}, "about": {"@id": S.DOMAIN + "/#product"}}
+    graph = [org(), {"@type": "WebSite", "@id": S.DOMAIN + "/#website", "url": S.DOMAIN + "/", "name": S.BRAND,
+                     "description": S.TAGLINE, "inLanguage": "en-ZA", "publisher": {"@id": S.DOMAIN + "/#organization"}}, page_ld]
+    if path != "index.html":
+        page_ld["breadcrumb"] = {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": S.DOMAIN + "/"},
+            {"@type": "ListItem", "position": 2, "name": names.get(path, full), "item": url}]}
+    if path in ("index.html", "product.html", "pricing.html", "pre-order.html"):
+        graph.append(product_ld())
+    if path == "index.html":
+        graph.append({"@type": "VideoObject", "name": "The HiNoterBook: one tap, and it starts listening",
+                      "description": "The HiNoterBook on a boardroom table: a tap on the built-in AI listening device starts it listening, then notes are written as the meeting goes on.",
+                      "thumbnailUrl": [_abs("assets/img/film-poster-1600.webp")], "uploadDate": "2026-11-24T20:00:00+02:00",
+                      "duration": "PT30S", "contentUrl": _abs("assets/video/folio-film-1080.mp4"), "embedUrl": S.DOMAIN + "/#film",
+                      "publisher": {"@id": S.DOMAIN + "/#organization"}})
+    out = [{"@context": "https://schema.org", "@graph": graph}]
+    if path == "faq.html":
+        out.append({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in S.FAQ_HOME + S.FAQ_MORE]})
+    return out
+
+
 MARK = ('<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" '
         'stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/>'
         '<path d="M3.5 7.5 12 13l8.5-5.5"/><circle cx="12" cy="16.4" r="1.35" fill="#fff" stroke="none"/></svg>')
@@ -131,8 +181,10 @@ def img(stem, alt, sizes="(max-width: 700px) 90vw, 600px", cls="", eager=False, 
 
 
 def head(title, desc, path):
-    full = f"{title} | {S.BRAND}" if path != "index.html" else f"{S.BRAND} — {S.TAGLINE}"
+    full, desc = S.SEO.get(path, (f"{title} | {S.BRAND}", desc))
     url = S.DOMAIN + "/" + ("" if path == "index.html" else path)
+    robots = "noindex, follow" if path == "404.html" else "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    ld = "".join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False).replace("</", "<\\/") + "</script>\n" for x in schema(path, full, desc, url))
     return f"""<!doctype html>
 <html lang="en-ZA">
 <head>
@@ -140,9 +192,12 @@ def head(title, desc, path):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(full)}</title>
 <meta name="description" content="{e(desc)}">
-<link rel="canonical" href="{url}">
+<meta name="robots" content="{robots}">
+{"" if path == "404.html" else f'<link rel="canonical" href="{url}">'}
 <meta name="theme-color" content="#1f5bd6">
-<meta property="og:type" content="website">
+<meta name="application-name" content="{e(S.BRAND)}">
+<meta property="og:type" content="{'product' if path in ('product.html', 'pre-order.html') else 'website'}">
+<meta property="og:locale" content="en_ZA">
 <meta property="og:site_name" content="{e(S.BRAND)}">
 <meta property="og:title" content="{e(full)}">
 <meta property="og:description" content="{e(desc)}">
@@ -150,7 +205,13 @@ def head(title, desc, path):
 <meta property="og:image" content="{S.DOMAIN}/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(S.BRAND)}: {e(S.TAGLINE)}. RRP {S.PRICE} with free HiNoter Earpods.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(full)}">
+<meta name="twitter:description" content="{e(desc)}">
+<meta name="twitter:image" content="{S.DOMAIN}/og.jpg">
+<link rel="manifest" href="site.webmanifest">
+{ld}
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-64.png" sizes="64x64" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -196,7 +257,7 @@ def footer():
     <div class="f-top">
       <div>
         <a class="brand" href="index.html" aria-label="{e(S.BRAND)} home"><img class="brand-logo" src="assets/img/logo.png" alt="{e(S.BRAND)}" width="337" height="220"></a>
-        <p>A stitched folio with a built-in AI listening device. Made for people who live in meetings.</p>
+        <p>A stitched folio with a built-in AI listening device. Made for people who live in meetings. Pre-orders open in South Africa.</p>
         <a class="btn btn-primary btn-sm f-cta" href="pre-order.html">Pre-order for {S.PRICE} {ARR}</a>
       </div>
       <div class="f-col"><h2>Product</h2><ul>
@@ -459,7 +520,7 @@ def home():
 <div class="stage">{app_frame()}<img class="folio-float" src="assets/img/folio-trio-1600.webp" srcset="assets/img/folio-trio-800.webp 800w, assets/img/folio-trio-1600.webp 1400w" sizes="(max-width: 700px) 56vw, 460px" width="1400" height="946" alt="HiNoterBook folios in tan, black and blush" decoding="async"></div>
 </section>
 
-<section class="section film-sec"><div class="wrap">
+<section class="section film-sec" id="film"><div class="wrap">
   <div class="s-head"><span class="eyebrow">See it in action</span><h2>One tap, and it starts listening</h2><p>Thirty seconds in a real boardroom: open the folio, tap the built-in listening device, and get on with the meeting.</p></div>
   <div class="film" data-film>
     <video loop playsinline webkit-playsinline preload="none" poster="assets/img/film-poster-1600.webp?v=2" aria-label="Video: the tan HiNoterBook folio on a boardroom table. A finger taps the built-in listening device, its screen shows The HiNoterBook and a sound wave, with the caption Your notebook starts listening, then someone writes notes on the notepad.">
@@ -834,8 +895,49 @@ if __name__ == "__main__":
     for name, fn in PAGES.items():
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(fn())
-    urls = "".join(f"<url><loc>{S.DOMAIN}/{'' if n == 'index.html' else n}</loc></url>" for n in PAGES if n != "404.html")
+    import datetime
+    today = datetime.date.today().isoformat()
+    imgs = {"index.html": ["folio-trio-1600.webp", "folio-wood-1600.webp", "folio-cafe-1600.webp", "life-meeting-1600.webp"],
+            "product.html": ["folio-trio-1600.webp", "folio-studio-1600.webp", "folio-tan-1200.webp", "folio-onyx-1200.webp", "folio-stone-1200.webp", "folio-blush-1200.webp"],
+            "how-it-works.html": ["folio-wood-1600.webp"], "pre-order.html": ["folio-lineup-1600.webp"]}
+    prio = {"index.html": "1.0", "product.html": "0.9", "pre-order.html": "0.9", "pricing.html": "0.8", "how-it-works.html": "0.8", "faq.html": "0.7", "integrations.html": "0.6", "contact.html": "0.5", "privacy.html": "0.3", "terms.html": "0.3"}
+    rows = ""
+    for n in PAGES:
+        if n == "404.html":
+            continue
+        loc = S.DOMAIN + "/" + ("" if n == "index.html" else n)
+        im = "".join(f"<image:image><image:loc>{S.DOMAIN}/assets/img/{i}</image:loc></image:image>" for i in imgs.get(n, []))
+        rows += f"<url><loc>{loc}</loc><lastmod>{today}</lastmod><priority>{prio.get(n, '0.5')}</priority>{im}</url>\n"
     open(os.path.join(OUT, "sitemap.xml"), "w").write(
-        f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
-    open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {S.DOMAIN}/sitemap.xml\n")
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + rows + "</urlset>\n")
+    open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {S.DOMAIN}/sitemap.xml\n")
+    open(os.path.join(OUT, "site.webmanifest"), "w").write(json.dumps({
+        "name": S.BRAND, "short_name": "HiNoterBook", "description": S.TAGLINE, "start_url": "/", "display": "browser",
+        "background_color": "#ffffff", "theme_color": "#1f5bd6",
+        "icons": [{"src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}, {"src": "/favicon-64.png", "sizes": "64x64", "type": "image/png"}]}, indent=2))
+    faqs = "\n".join(f"- {q} {a}" for q, a in S.FAQ_HOME + S.FAQ_MORE)
+    open(os.path.join(OUT, "llms.txt"), "w").write(f"""# {S.BRAND}
+
+> {S.TAGLINE}. A stitched leather folio with a built-in AI listening device. It listens during in-person meetings and emails you the summary, action items and a draft follow-up email afterwards. Sold in South Africa.
+
+## Key facts
+- Price: {S.PRICE} once-off (recommended retail price). Maximum discount {S.REWARD} via the website scratch card ({S.PRICE_REWARD}).
+- Free gift: HiNoter Earpods worth {S.GIFT_VALUE} with every pre-order.
+- In the box: folio with built-in AI listening device, power bank, notepad and pen loop.
+- Colours: {", ".join(c[1] for c in S.COLOURS)}.
+- Status: pre-orders open. Nothing is charged online; the team contacts each customer to confirm colour, delivery and payment.
+- Integrations (ChatGPT, Claude, Gemini, Zoom, Google Meet, Microsoft Teams) are planned, not live yet.
+
+## Pages
+- [Home]({S.DOMAIN}/): overview, video and how the notes reach your inbox
+- [Product]({S.DOMAIN}/product.html): details, colours and what is inside
+- [How it works]({S.DOMAIN}/how-it-works.html): before, during and after the meeting
+- [Pricing]({S.DOMAIN}/pricing.html): {S.PRICE} RRP and what is included
+- [Pre-order]({S.DOMAIN}/pre-order.html): reserve yours
+- [FAQ]({S.DOMAIN}/faq.html)
+- [Privacy Policy (POPIA)]({S.DOMAIN}/privacy.html)
+
+## FAQ
+{faqs}
+""")
     print("built", len(PAGES), "pages")
