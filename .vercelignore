@@ -1,0 +1,5 @@
+# Files the website does not need to serve
+_src
+.claude
+CLAUDE.md
+README.md

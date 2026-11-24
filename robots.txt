@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hi-notebook.vercel.app/sitemap.xml
