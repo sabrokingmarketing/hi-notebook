@@ -779,3 +779,17 @@ h1,h2,h3{text-transform:capitalize}
 .mdraft{margin-top:12px;border:1px dashed #c9d6ee;border-radius:12px;padding:12px 16px;background:#fbfdff}
 .mdraft h6{margin:0 0 4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink);font-weight:600;font-family:var(--font-body)}
 .mdraft p{margin:0;font-size:11.5px;color:var(--ink-2);line-height:1.55}
+
+/* Pre-order: automatic email confirmation vs manual fallback */
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.success .ok-manual{display:none}
+.sent.manual .success .ok-manual{display:block}
+.sent.manual .success .form-foot.ok-manual{display:flex}
+.sent.manual .success .ok-auto{display:none}
+.ok-ref{margin-top:8px!important;font-size:15px}
+.btn[aria-busy="true"]{opacity:.75;pointer-events:none}
+.btn[aria-busy="true"] .arr{display:none}
+.btn[aria-busy="true"]::after{content:"";width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-error{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fdecea;color:#8a1c12;font-size:15px}
+.form-error.show{display:block}

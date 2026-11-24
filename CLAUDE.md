@@ -14,5 +14,6 @@ The owner is not a developer. Explain everything in plain, simple English.
 - No floating WhatsApp button (the owner asked for it to be removed). WhatsApp links use https://wa.me/27XXXXXXXXX format.
 - Keep the Privacy Policy page (POPIA).
 - Correct at 390px, 768px and 1440px. No sideways scrolling. WCAG AA contrast. Respect prefers-reduced-motion.
-- No environment variables, API keys or secrets. Never commit .env files. File names lowercase, no spaces.
+- Pre-order emails: `api/pre-order.js` (a Vercel serverless function, no packages) sends the order to info@survivalguide.co.za and a thank-you email to the customer through Resend, from orders@hinoterbook.co.za. The only secret is the Vercel environment variable `RESEND_API_KEY` (set in Vercel by the owner). Never put keys in code and never commit .env files.
+- File names lowercase, no spaces.
 - Before finishing any task: rebuild with `python3 _src/build.py`, check the pages in a browser, then commit and push.

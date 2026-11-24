@@ -158,7 +158,7 @@ def head(title, desc, path):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
-<script>window.SITE={json.dumps({"brand": S.BRAND, "price": S.PRICE, "priceReward": S.PRICE_REWARD, "reward": S.REWARD, "gift": S.GIFT + " worth " + S.GIFT_VALUE, "whatsapp": S.WHATSAPP, "email": S.EMAIL})};</script>
+<script>window.SITE={json.dumps({"brand": S.BRAND, "price": S.PRICE, "priceReward": S.PRICE_REWARD, "reward": S.REWARD, "gift": S.GIFT + " worth " + S.GIFT_VALUE, "whatsapp": S.WHATSAPP, "email": S.EMAIL, "orderEmail": S.ORDER_EMAIL})};</script>
 {TOP_SCRIPT}<script defer src="assets/js/site.js"></script>
 </head>
 <body>
@@ -709,6 +709,7 @@ def preorder():
       <p class="lede">All fields are required unless marked optional.</p>
       <div class="reward-banner">{ui("gift")}<span>Your {S.REWARD} scratch-card reward will be added to this pre-order.</span></div>
       <input type="hidden" name="reward" value="">
+      <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
       <div class="fields">
         <div class="field full"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" required><span class="err" role="alert"></span></div>
         <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required><span class="err" role="alert"></span></div>
@@ -722,11 +723,18 @@ def preorder():
     </form>
     <div class="success" role="status">
       <div class="tick">{ui("check")}</div>
-      <h2>Thank you. One last step.</h2>
-      <p>Send your pre-order to our team below. Once it arrives, <b>our team will contact you with the next steps</b>: confirming your colour, delivery and payment.</p>
+      <div class="ok-auto">
+        <h2>Thank you. Your pre-order is in.</h2>
+        <p>We've emailed you a confirmation with everything you'll get. <b>Our team will be in touch soon</b> to confirm your colour, delivery and payment. Nothing has been charged.</p>
+        <p class="ok-ref">Your reference: <b data-ref></b></p>
+      </div>
+      <div class="ok-manual">
+        <h2>Thank you. One last step.</h2>
+        <p>We couldn't send your pre-order automatically just now. Please send it to our team below. Once it arrives, <b>our team will contact you with the next steps</b>.</p>
+      </div>
       <div class="summary"><dl data-summary></dl></div>
-      <div class="form-foot"><a class="btn btn-primary" data-send-wa href="#" target="_blank" rel="noopener">Send on WhatsApp {ARR}</a><a class="btn btn-ghost" data-send-mail href="#">Send by email</a></div>
-      <div class="form-foot"><button class="btn btn-ghost btn-sm" type="button" data-edit>Change my details</button></div>
+      <div class="form-foot ok-manual"><a class="btn btn-primary" data-send-wa href="#" target="_blank" rel="noopener">Send on WhatsApp {ARR}</a><a class="btn btn-ghost" data-send-mail href="#">Send by email</a></div>
+      <div class="form-foot ok-manual"><button class="btn btn-ghost btn-sm" type="button" data-edit>Change my details</button></div>
     </div>
   </div>
   <aside class="side-card" aria-label="Order summary">
@@ -776,7 +784,7 @@ def privacy():
 {page_hero("Privacy", "Privacy Policy", "How we handle your personal information under South Africa's Protection of Personal Information Act (POPIA).", False)}
 <section class="section"><div class="wrap"><div class="prose">
 <h2>Who we are</h2><p>{e(S.BRAND)} is the business behind this website and the pre-order offer. You can reach us at <a class="link" href="mailto:{S.EMAIL}">{S.EMAIL}</a> or on WhatsApp at {S.WHATSAPP_DISPLAY}.</p>
-<h2>What we collect</h2><p>When you send a pre-order or a question, we receive the details you choose to share: your name, email address, mobile number, colour choice, province and any note you add.</p><p>This website does not ask for card or banking details, and it does not use advertising trackers.</p>
+<h2>What we collect</h2><p>When you send a pre-order or a question, we receive the details you choose to share: your name, email address, mobile number, colour choice, province and any note you add.</p><p>This website does not ask for card or banking details, and it does not use advertising trackers.</p><p>When you send a pre-order, your details are emailed to our team and you receive a confirmation email. We use Resend, an email delivery service, to send these emails. Resend handles your details only to deliver them.</p>
 <h2>Why we use it</h2><ul><li>To contact you about your pre-order and confirm colour, delivery and payment.</li><li>To answer questions you send us.</li><li>To apply a reward you have revealed on the website.</li></ul><p>We will not sell your information or use it for anything you haven't agreed to.</p>
 <h2>Your consent</h2><p>We only use your details after you tick the consent box on our pre-order form, or when you contact us yourself. You can withdraw consent at any time by telling us.</p>
 <h2>Your rights under POPIA</h2><p>You may ask us what information we hold about you, ask us to correct or delete it, and object to how we use it. You can also complain to the Information Regulator of South Africa.</p>

@@ -487,41 +487,73 @@
       el.addEventListener("change", function () { if (el.closest("[data-invalid]")) el.closest("[data-invalid]").removeAttribute("data-invalid"); });
     });
 
+    var submitBtn = form.querySelector("button[type=submit]");
+    var errBox = document.createElement("p");
+    errBox.className = "form-error"; errBox.setAttribute("role", "alert");
+    form.querySelector(".form-foot").after(errBox);
+
+    function showDone(manual, data, ref) {
+      var dl = shell.querySelector("[data-summary]");
+      dl.innerHTML = "";
+      ["Name", "Email", "Phone", "Colour", "Price", "Gift"].forEach(function (k) {
+        var dt = document.createElement("dt"); dt.textContent = k === "Gift" ? "Free gift" : k;
+        var dd = document.createElement("dd"); dd.textContent = k === "Gift" ? data[k].charAt(0).toUpperCase() + data[k].slice(1) : data[k];
+        dl.appendChild(dt); dl.appendChild(dd);
+      });
+      var r = shell.querySelector("[data-ref]"); if (r) r.textContent = ref || "";
+      shell.classList.toggle("manual", !!manual);
+      shell.classList.add("sent");
+      var h = shell.querySelector(manual ? ".ok-manual h2" : ".ok-auto h2");
+      h.setAttribute("tabindex", "-1"); h.focus();
+      window.scrollTo({ top: shell.getBoundingClientRect().top + window.scrollY - 100, behavior: reduce ? "auto" : "smooth" });
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      errBox.classList.remove("show");
       if (!validate()) return;
       var colour = form.querySelector("input[name=colour]:checked").value;
-      var reward = hasReward() ? "Yes, " + CFG.reward + " scratch-card reward" : "No";
-      var price = hasReward() ? CFG.priceReward + " once-off (" + CFG.price + " RRP less " + CFG.reward + " reward)" : CFG.price + " once-off (RRP)";
+      var rewardOn = hasReward();
       var data = {
         Name: form.elements.name.value.trim(),
         Email: form.elements.email.value.trim(),
         Phone: form.elements.phone.value.trim(),
         Colour: colour,
         Province: form.elements.province.value || "Not given",
-        Price: price,
+        Price: rewardOn ? CFG.priceReward + " once-off (" + CFG.price + " RRP less " + CFG.reward + " reward)" : CFG.price + " once-off (RRP)",
         Gift: CFG.gift,
-        Reward: reward,
+        Reward: rewardOn ? "Yes, " + CFG.reward + " scratch-card reward" : "No",
         Notes: form.elements.notes.value.trim() || "None"
       };
+      // Prepare the manual fallback (WhatsApp / email) in case the automatic email can't be sent
       var lines = ["Hi " + CFG.brand + " team, I'd like to place a pre-order.", ""];
       Object.keys(data).forEach(function (k) { lines.push(k + ": " + data[k]); });
       var msg = lines.join("\n");
-      var wa = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(msg);
-      var mail = "mailto:" + CFG.email + "?subject=" + encodeURIComponent("Pre-order: " + data.Name + " (" + colour + ")") + "&body=" + encodeURIComponent(msg);
-      shell.querySelector("[data-send-wa]").href = wa;
-      shell.querySelector("[data-send-mail]").href = mail;
-      var dl = shell.querySelector("[data-summary]");
-      dl.innerHTML = "";
-      ["Name", "Email", "Phone", "Colour", "Price"].forEach(function (k) {
-        var dt = document.createElement("dt"); dt.textContent = k;
-        var dd = document.createElement("dd"); dd.textContent = data[k];
-        dl.appendChild(dt); dl.appendChild(dd);
+      shell.querySelector("[data-send-wa]").href = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(msg);
+      shell.querySelector("[data-send-mail]").href = "mailto:" + CFG.orderEmail + "?subject=" + encodeURIComponent("Pre-order: " + data.Name + " (" + colour + ")") + "&body=" + encodeURIComponent(msg);
+
+      submitBtn.setAttribute("aria-busy", "true");
+      var payload = {
+        name: data.Name, email: data.Email, phone: data.Phone, colour: colour,
+        province: form.elements.province.value || "", notes: form.elements.notes.value.trim(),
+        reward: rewardOn, consent: form.elements.consent.checked, website: form.elements.website.value
+      };
+      var ctrl = "AbortController" in window ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      fetch("/api/pre-order", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload), signal: ctrl ? ctrl.signal : undefined
+      }).then(function (r) {
+        return r.json().catch(function () { return { ok: false }; }).then(function (j) { j.status = r.status; return j; });
+      }).then(function (j) {
+        clearTimeout(timer); submitBtn.removeAttribute("aria-busy");
+        if (j.ok) { showDone(false, data, j.ref); return; }
+        if (j.status === 400 || j.status === 429) { errBox.textContent = j.error || "Please check your details and try again."; errBox.classList.add("show"); return; }
+        showDone(true, data);
+      }).catch(function () {
+        clearTimeout(timer); submitBtn.removeAttribute("aria-busy");
+        showDone(true, data);
       });
-      shell.classList.add("sent");
-      var h = shell.querySelector(".success h2");
-      h.setAttribute("tabindex", "-1"); h.focus();
-      window.scrollTo({ top: shell.getBoundingClientRect().top + window.scrollY - 100, behavior: reduce ? "auto" : "smooth" });
     });
     var again = shell.querySelector("[data-edit]");
     if (again) again.addEventListener("click", function () { shell.classList.remove("sent"); form.elements.name.focus(); });

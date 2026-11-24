@@ -33,7 +33,8 @@ WHATSAPP_DISPLAY = "+27 XX XXX XXXX"   # TODO
 # TODO: real phone number for tap-to-call
 PHONE_TEL = "+27XXXXXXXXX"
 PHONE_DISPLAY = "+27 XX XXX XXXX"      # TODO
-# TODO: real email inbox for pre-orders
+ORDER_EMAIL = "info@survivalguide.co.za"   # pre-orders are emailed here (also set in api/pre-order.js)
+# TODO: public contact email shown on the site
 EMAIL = "hello@hinoterbook.example"
 # TODO: city or area the team works from (district only)
 LOCATION = "South Africa"

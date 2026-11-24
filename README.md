@@ -1,13 +1,22 @@
 # The HiNoterBook website
 
-A complete static website (plain HTML, CSS and JavaScript). There is **no build step**, so Vercel serves the files exactly as they are.
+A complete static website (plain HTML, CSS and JavaScript). There is **no build step**, so Vercel serves the files exactly as they are. One small server function (`api/pre-order.js`) sends the pre-order emails.
 
 ## Deploying on Vercel (for the team)
 
 1. In Vercel, choose **Add New → Project** and import `sabrokingmarketing/hi-notebook`.
 2. **Framework Preset:** `Other`.
 3. **Build Command:** leave empty. **Output Directory:** leave empty (the site is in the repository root). **Install Command:** leave empty.
-4. Deploy. No environment variables, API keys or secrets are needed.
+4. **Environment variable:** `RESEND_API_KEY` (your Resend API key) for Production. It powers the pre-order emails. Without it the site still works, and customers get a WhatsApp/email fallback instead.
+5. Deploy.
+
+## Pre-order emails (Resend)
+
+`api/pre-order.js` runs on Vercel when someone sends the pre-order form. It:
+- emails the full order to **info@survivalguide.co.za** (reply goes straight to the customer), and
+- emails the customer a branded thank-you with what they'll get and what happens next (replies go to info@survivalguide.co.za).
+
+Emails are sent from **orders@hinoterbook.co.za**, so the domain `hinoterbook.co.za` must be verified in Resend (Resend → Domains). To change the addresses, edit the top of `api/pre-order.js`.
 
 `index.html` is the homepage and `404.html` is shown automatically for missing pages.
 `.vercelignore` keeps the source and project files (`_src`, `.claude`, `CLAUDE.md`, this README) off the live site.
