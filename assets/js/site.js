@@ -304,7 +304,7 @@
     store.set(REWARD_KEY, "1");
     document.documentElement.classList.add("has-reward");
     var f = document.querySelector("input[name=reward]");
-    if (f) f.value = "20% scratch-card reward";
+    if (f) f.value = CFG.reward + " scratch-card reward";
   }
   if (hasReward()) markReward();
 
@@ -492,7 +492,7 @@
       if (!validate()) return;
       var colour = form.querySelector("input[name=colour]:checked").value;
       var reward = hasReward() ? "Yes, " + CFG.reward + " scratch-card reward" : "No";
-      var price = hasReward() ? CFG.priceReward + " once-off (" + CFG.price + " less " + CFG.reward + " reward)" : CFG.price + " once-off";
+      var price = hasReward() ? CFG.priceReward + " once-off (" + CFG.price + " RRP less " + CFG.reward + " reward)" : CFG.price + " once-off (RRP)";
       var data = {
         Name: form.elements.name.value.trim(),
         Email: form.elements.email.value.trim(),
@@ -500,6 +500,7 @@
         Colour: colour,
         Province: form.elements.province.value || "Not given",
         Price: price,
+        Gift: CFG.gift,
         Reward: reward,
         Notes: form.elements.notes.value.trim() || "None"
       };

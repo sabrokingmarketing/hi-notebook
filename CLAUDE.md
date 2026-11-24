@@ -9,7 +9,7 @@ The owner is not a developer. Explain everything in plain, simple English.
 ## Always
 - Before any design or content work, follow the Taste Skill (design-taste-frontend), the ui-ux-pro-max skill and the design-motion-principles skill for all animation.
 - Never invent reviews, prices, awards, statistics or client names.
-- Pre-order price R6 500 once-off; the 20% scratch-card reward makes it R5 200. Prices in Rand, written like R6 500.
+- RRP R7 499 once-off. Maximum discount 10% (scratch card) makes it R6 749. Free earpods worth R999 with every pre-order. Prices in Rand, written like R7 499.
 - No floating WhatsApp button (the owner asked for it to be removed). WhatsApp links use https://wa.me/27XXXXXXXXX format.
 - Keep the Privacy Policy page (POPIA).
 - Correct at 390px, 768px and 1440px. No sideways scrolling. WCAG AA contrast. Respect prefers-reduced-motion.

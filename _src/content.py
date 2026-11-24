@@ -8,22 +8,24 @@ Anything marked TODO is missing information. The site shows a safe stand-in unti
 """
 
 BRAND = "HiNote Book"
-TAGLINE = "The leather notebook that keeps your meeting notes"
+TAGLINE = "Your In-person AI NoteTaker"
 BRAND_BLUE = "#1f5bd6"
 
-PRICE_RAND = 6500           # once-off pre-order price in Rand
-REWARD_PCT = 20             # scratch-card reward, percent off
+PRICE_RAND = 7499           # RRP (recommended retail price) in Rand, once-off
+REWARD_PCT = 10             # scratch-card reward = the maximum discount (10%)
 
 
 def rand(n):
-    """Write Rand the South African way: R6 500"""
-    return "R" + f"{n:,}".replace(",", "\u00a0")  # non-breaking space keeps "R6 500" on one line
+    """Write Rand the South African way: R7 499"""
+    return "R" + f"{n:,}".replace(",", "\u00a0")  # non-breaking space keeps "R7 499" on one line
 
 
-PRICE = rand(PRICE_RAND)                                        # "R6 500"
-REWARD = f"{REWARD_PCT}%"                                       # "20%"
-PRICE_REWARD = rand(round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R5 200"
-SAVING = rand(PRICE_RAND - round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R1 300"
+PRICE = rand(PRICE_RAND)                                        # "R7 499"
+REWARD = f"{REWARD_PCT}%"                                       # "10%"
+PRICE_REWARD = rand(round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R6 749"
+GIFT = "free earpods"                      # TODO: confirm the earpods' product name
+GIFT_VALUE = rand(999)                      # "R999"
+SAVING = rand(PRICE_RAND - round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R750"
 
 # TODO: real WhatsApp number in international format, no plus, no leading 0 (e.g. 27821234567)
 WHATSAPP = "27XXXXXXXXX"
@@ -81,18 +83,20 @@ FAQ_HOME = [
     ("Is the AI assistant available today?",
      "Not yet. Pre-orders are open now. When our team contacts you about your pre-order, they will share the timing for the folio and for assistant access."),
     (f"How does the {PRICE} pre-order work?",
-     f"It is a once-off price of {PRICE}. Fill in the short pre-order form and send it. You don't pay anything on this website. Our team will contact you to confirm your colour, delivery and payment."),
+     f"{PRICE} is the recommended retail price (RRP), paid once-off, and it includes {GIFT} worth {GIFT_VALUE}. Fill in the short pre-order form and send it. You don't pay anything on this website. Our team will contact you to confirm your colour, delivery and payment."),
     ("Which meeting apps will it work with?",
      "Zoom, Google Meet and Microsoft Teams are planned first. The integrations page shows each one's status, and nothing is marked live until it works."),
     ("Can I edit the notes before I share them?",
      "Yes, that is the plan. Summaries, action items and the follow-up email are drafts you check and change before anything goes out."),
-    ("How do I use the 20% scratch-card reward?",
+    ("How do I use the 10% scratch-card reward?",
      f"Scratch the card on the homepage. The reward is saved on your device and applied to your pre-order automatically, so you pay {PRICE_REWARD} instead of {PRICE}."),
 ]
 
 FAQ_MORE = [
     ("What comes in the box?",
-     "The folio with its built-in AI listening device, and a power bank to keep the device charged."),
+     f"The folio with its built-in AI listening device, a power bank to keep the device charged, and {GIFT} worth {GIFT_VALUE}."),
+    ("Is there a bigger discount?",
+     f"No. {REWARD} off is the maximum discount, from the scratch card. Every pre-order also includes {GIFT} worth {GIFT_VALUE}."),
     ("Do I need my phone for it to listen?",
      "No. The AI listening device is built into the folio, so you just open it and start the meeting."),
     ("Does everyone in the meeting need to agree to being recorded?",
@@ -118,11 +122,11 @@ TODO = [
     "Phone number for tap-to-call",
     "Email address for pre-orders",
     "Live website address (domain) for sitemap and share links",
-    "What the R6 500 pre-order includes, and delivery timing",
+    "What the R7 499 pre-order includes, and delivery timing",
     "Official colour names",
     "Folio specifications: size and materials",
     "Listening device and power bank details (battery life, charging, how notes reach the inbox)",
-    "Terms for the 20% reward (what it applies to, expiry)",
+    "Terms for the 10% reward (what it applies to, expiry)",
     "Company name and details for the Privacy Policy and pre-order terms",
     "Lifestyle photos of the folio in use (desk, meeting room)",
 ]
