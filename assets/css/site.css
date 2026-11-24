@@ -617,9 +617,9 @@ h1,h2,h3{text-transform:capitalize}
 .slide-pause[aria-pressed="true"] .i-pause{display:none}
 
 /* Cloud logo */
-.brand-logo{height:68px;width:auto;display:block}
+.brand-logo{height:76px;width:auto;display:block}
 .site-footer .brand-logo{height:64px}
-@media (max-width:980px){.brand-logo{height:60px}}
+@media (max-width:980px){.brand-logo{height:64px}}
 
 /* Price with scratch-card reward */
 .p-now,.p-badge,.p-note-reward{display:none}

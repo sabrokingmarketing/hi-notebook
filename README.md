@@ -1,4 +1,4 @@
-# HiNote Book website
+# The HiNoterBook website
 
 A complete static website (plain HTML, CSS and JavaScript). There is **no build step**, so Vercel serves the files exactly as they are.
 

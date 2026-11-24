@@ -7,7 +7,7 @@ Edit this file, then run:  python3 preview/_src/build.py
 Anything marked TODO is missing information. The site shows a safe stand-in until it is filled in.
 """
 
-BRAND = "HiNote Book"
+BRAND = "The HiNoterBook"
 TAGLINE = "Your In-person AI NoteTaker"
 BRAND_BLUE = "#1f5bd6"
 
@@ -23,7 +23,7 @@ def rand(n):
 PRICE = rand(PRICE_RAND)                                        # "R7 499"
 REWARD = f"{REWARD_PCT}%"                                       # "10%"
 PRICE_REWARD = rand(round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R6 749"
-GIFT = "free earpods"                      # TODO: confirm the earpods' product name
+GIFT = "free HiNoter Earpods"
 GIFT_VALUE = rand(999)                      # "R999"
 SAVING = rand(PRICE_RAND - round(PRICE_RAND * (100 - REWARD_PCT) / 100))  # "R750"
 
@@ -34,7 +34,7 @@ WHATSAPP_DISPLAY = "+27 XX XXX XXXX"   # TODO
 PHONE_TEL = "+27XXXXXXXXX"
 PHONE_DISPLAY = "+27 XX XXX XXXX"      # TODO
 # TODO: real email inbox for pre-orders
-EMAIL = "hello@hinotebook.example"
+EMAIL = "hello@hinoterbook.example"
 # TODO: city or area the team works from (district only)
 LOCATION = "South Africa"
 # TODO: live domain, used for sitemap.xml and share links
@@ -117,7 +117,6 @@ FAQ_MORE = [
 
 # Open items for the owner (also listed in the build report)
 TODO = [
-    "Check the HiNote Book name is free to use (it is close to the HiNoter app)",
     "WhatsApp number (international format, e.g. 27821234567)",
     "Phone number for tap-to-call",
     "Email address for pre-orders",

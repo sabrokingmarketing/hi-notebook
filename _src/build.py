@@ -24,7 +24,7 @@ def photo(stem, alt, w, h, sizes="(max-width: 860px) 92vw, 760px", cls="", style
             f'width="{w}" height="{h}" alt="{e(alt)}" loading="lazy" decoding="async"{f' style="{style}"' if style else ""}>')
 
 
-def lifestyle(stem="life-meeting", alt="A woman in an office holding a tan HiNote Book folio and a pencil, with colleagues working at a table behind her",
+def lifestyle(stem="life-meeting", alt="A woman in an office holding a tan HiNoterBook folio and a pencil, with colleagues working at a table behind her",
               w=1536, h=1024, eyebrow="In the room", h2="Made for the meeting room",
               p="Walk in with the folio under your arm. The AI listening device is built in, so you just write down what you want to remember. Your notes arrive in your inbox when the meeting ends.",
               pos=""):
@@ -174,7 +174,7 @@ def header(path):
         for f, l in S.NAV + [("contact.html", "Contact")])
     return f"""<header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="index.html" aria-label="{e(S.BRAND)} home"><img class="brand-logo" src="assets/img/logo-outline.png" alt="{e(S.BRAND)}" width="310" height="200"></a>
+    <a class="brand" href="index.html" aria-label="{e(S.BRAND)} home"><img class="brand-logo" src="assets/img/logo-outline.png" alt="{e(S.BRAND)}" width="337" height="220"></a>
     <nav class="nav-pill" aria-label="Main">{links}</nav>
     <div class="head-actions">
       <a class="btn btn-white btn-sm" href="pre-order.html">Pre-order<span class="long">&nbsp;· {S.PRICE}</span></a>
@@ -195,7 +195,7 @@ def footer():
   <div class="wrap">
     <div class="f-top">
       <div>
-        <a class="brand" href="index.html" aria-label="{e(S.BRAND)} home"><img class="brand-logo" src="assets/img/logo.png" alt="{e(S.BRAND)}" width="310" height="200"></a>
+        <a class="brand" href="index.html" aria-label="{e(S.BRAND)} home"><img class="brand-logo" src="assets/img/logo.png" alt="{e(S.BRAND)}" width="337" height="220"></a>
         <p>A stitched folio with a built-in AI listening device. Made for people who live in meetings.</p>
         <a class="btn btn-primary btn-sm f-cta" href="pre-order.html">Pre-order for {S.PRICE} {ARR}</a>
       </div>
@@ -273,7 +273,7 @@ def app_frame():
         "Action: Pieter updates the pricing sheet by Friday.",
         "Open question: who signs off the supplier contract?",
     ])
-    return f"""<div class="laptop" role="img" aria-label="Example: the {e(S.BRAND)} app showing a live meeting with its transcript and notes being written">
+    return f"""<div class="laptop" role="img" aria-label="Example: {e(S.BRAND)} app showing a live meeting with its transcript and notes being written">
   <div class="lid"><div class="notch"></div><div class="screen"><div class="screen-fit">
     <div class="screen-wall"></div>
     <div class="app" aria-hidden="true">
@@ -417,7 +417,7 @@ def home():
     })
     facts = f"""<div class="facts">
   <div class="fact"><span class="tag">RRP</span><span class="big">{S.PRICE}</span><p>Once-off. Reserve your folio now; you don't pay on this website.</p></div>
-  <div class="fact"><span class="tag">Free with every order</span><span class="big">{S.GIFT_VALUE}</span><p>Earpods worth {S.GIFT_VALUE}, included with your pre-order.</p></div>
+  <div class="fact"><span class="tag">Free with every order</span><span class="big">{S.GIFT_VALUE}</span><p>HiNoter Earpods worth {S.GIFT_VALUE}, included with your pre-order.</p></div>
   <div class="fact"><span class="tag">Early reward</span><span class="big">{S.REWARD}<small>off</small></span><p>Scratch the card further down this page to unlock it.</p></div>
 </div>"""
     steps = [
@@ -442,18 +442,18 @@ def home():
 
     body = f"""
 <section class="sky hero"><div class="wrap" data-enter>
-  <span class="hero-fact"><b>New</b>Pre-orders open · RRP {S.PRICE} · Free earpods</span>
+  <span class="hero-fact"><b>New</b>Pre-orders open · Free HiNoter Earpods</span>
   <h1>The leather notebook that takes your meeting notes</h1>
   <p class="lede">A stitched folio with a built-in AI listening device. It takes every note and sends them straight to your inbox after the meeting, so you can stay in the conversation.</p>
   <div class="actions"><a class="btn btn-primary" href="pre-order.html">Pre-order for {S.PRICE} {ARR}</a><a class="btn btn-white" href="how-it-works.html">See how it works</a></div>
 </div>
-<div class="stage">{app_frame()}<img class="folio-float" src="assets/img/folio-trio-1600.webp" srcset="assets/img/folio-trio-800.webp 800w, assets/img/folio-trio-1600.webp 1400w" sizes="(max-width: 700px) 56vw, 460px" width="1400" height="946" alt="HiNote Book folios in tan, black and blush" decoding="async"></div>
+<div class="stage">{app_frame()}<img class="folio-float" src="assets/img/folio-trio-1600.webp" srcset="assets/img/folio-trio-800.webp 800w, assets/img/folio-trio-1600.webp 1400w" sizes="(max-width: 700px) 56vw, 460px" width="1400" height="946" alt="HiNoterBook folios in tan, black and blush" decoding="async"></div>
 </section>
 
 <section class="section film-sec"><div class="wrap">
   <div class="s-head"><span class="eyebrow">See it in action</span><h2>Open it, and it starts listening</h2><p>Thirty seconds on a real boardroom table: lift the flap, and the built-in listening device is ready for the meeting.</p></div>
   <div class="film" data-film>
-    <video muted loop playsinline preload="none" poster="assets/img/film-poster-1600.webp" aria-label="Video: a hand opens the tan HiNote Book folio on a boardroom table, showing the built-in listening device, notebook and pen. Caption: Your notebook starts listening.">
+    <video muted loop playsinline preload="none" poster="assets/img/film-poster-1600.webp" aria-label="Video: a hand opens the tan HiNoterBook folio on a boardroom table, showing the built-in listening device, notebook and pen. Caption: Your notebook starts listening.">
       <source src="assets/video/folio-film-960.mp4" type="video/mp4" media="(max-width: 760px)">
       <source src="assets/video/folio-film-1600.mp4" type="video/mp4">
     </video>
@@ -560,7 +560,7 @@ def product():
     ]
     rows = "".join(f"<li><b style='min-width:11rem;display:inline-block'>{e(k)}</b><span>{e(v)}</span></li>" for k, v in specs)
     body = f"""
-{page_hero("The notebook", "A stitched folio with an assistant inside the work", "Paper for the ideas you want to keep by hand. An AI assistant for everything that was said.", True, '<div class="hero-shot float">' + photo("folio-trio", "Three HiNote Book folios side by side in tan, black and blush", 1400, 946, "(max-width: 960px) 92vw, 880px") + '</div>')}
+{page_hero("The notebook", "A stitched folio with an assistant inside the work", "Paper for the ideas you want to keep by hand. An AI assistant for everything that was said.", True, '<div class="hero-shot float">' + photo("folio-trio", "Three HiNoterBook folios side by side in tan, black and blush", 1400, 946, "(max-width: 960px) 92vw, 880px") + '</div>')}
 <section class="section ground-sand"><div class="wrap">{showcase("Choose the colour you'll carry every day", "prod-img")}</div></section>
 <section class="section"><div class="wrap">{inside(None, "folio-boardroom", "The tan folio lying open on a boardroom table, with its built-in AI listening device, a pen and a notebook, chairs and a city view behind", 1600, 2142)}</div></section>
 <section class="section ground-surface"><div class="wrap">{lifestyle()}</div></section>
@@ -578,7 +578,7 @@ def product():
 {close_band()}
 """
     return page("product.html", "The notebook",
-                f"The {S.BRAND} folio: envelope flap, stitched edges and four leather colours, paired with an AI meeting assistant. Pre-order for {S.PRICE}.",
+                f"{S.BRAND} folio: envelope flap, stitched edges and four leather colours, paired with an AI meeting assistant. Pre-order for {S.PRICE}.",
                 body)
 
 
@@ -647,7 +647,7 @@ def pricing():
     checks = [
         "The folio in the colour you choose, with its built-in AI listening device",
         "A power bank to keep it charged",
-        f"{S.GIFT.capitalize()} worth {S.GIFT_VALUE}",
+        f"{S.GIFT[0].upper() + S.GIFT[1:]} worth {S.GIFT_VALUE}",
         "A place on the early-access list for the assistant",
         f"Your {S.REWARD} scratch-card reward, if you've revealed it",
         "A call or message from our team to confirm everything",
@@ -721,7 +721,7 @@ def preorder():
     </div>
   </div>
   <aside class="side-card" aria-label="Order summary">
-    {photo("folio-lineup", "HiNote Book folios in tan, black and blush", 906, 650, "(max-width: 860px) 90vw, 420px", "lineup")}
+    {photo("folio-lineup", "HiNoterBook folios in tan, black and blush", 906, 650, "(max-width: 860px) 90vw, 420px", "lineup")}
     <div class="p">{price_block()}</div><p class="p-note-base">RRP, once-off. Includes {S.GIFT} worth {S.GIFT_VALUE}. Nothing is charged on this website.</p><p class="p-note-reward">Your {S.REWARD} scratch-card reward is applied: you save {S.SAVING}. Includes {S.GIFT} worth {S.GIFT_VALUE}. Nothing charged on this website.</p>
     <ul><li>Our team confirms colour, delivery and payment with you</li><li>Change your colour any time before it ships</li><li>Questions? <a class="link" href="https://wa.me/{S.WHATSAPP}">WhatsApp us</a></li></ul>
   </aside>
@@ -759,7 +759,7 @@ def contact():
 </div>
 </div></section>
 """
-    return page("contact.html", "Contact", f"Contact the {S.BRAND} team on WhatsApp, by phone or by email about pre-orders and the AI meeting notebook.", body)
+    return page("contact.html", "Contact", f"Contact {S.BRAND} team on WhatsApp, by phone or by email about pre-orders and the AI meeting notebook.", body)
 
 
 def privacy():
@@ -793,7 +793,7 @@ def terms():
 <p class="note-box" style="margin-top:32px">Last updated: November 2026.</p>
 </div></div></section>
 """
-    return page("terms.html", "Pre-order terms", f"The {S.BRAND} pre-order terms: {S.PRICE}, no payment online, how the {S.REWARD} reward works and how to cancel.", body)
+    return page("terms.html", "Pre-order terms", f"{S.BRAND} pre-order terms: {S.PRICE}, no payment online, how the {S.REWARD} reward works and how to cancel.", body)
 
 
 def notfound():
@@ -805,7 +805,7 @@ def notfound():
   <div class="actions"><a class="btn btn-primary" href="pre-order.html">Pre-order for {S.PRICE} {ARR}</a><a class="btn btn-white" href="index.html">Go to the homepage</a></div>
 </div></section>
 """
-    return page("404.html", "Page not found", f"This page could not be found. Visit the {S.BRAND} homepage or pre-order for {S.PRICE}.", body)
+    return page("404.html", "Page not found", f"This page could not be found. Visit {S.BRAND} homepage or pre-order for {S.PRICE}.", body)
 
 
 PAGES = {
